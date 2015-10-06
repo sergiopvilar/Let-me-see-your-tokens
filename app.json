@@ -7,7 +7,7 @@
     "APP_ID": {
       "description": "Your Facebook app's ID."
     },
-    "WEB_CONCURRENCY": {
+    "APP_SECRET": {
       "description": "Your Facebook app's Secret"
     }
   },
