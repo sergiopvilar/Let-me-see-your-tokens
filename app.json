@@ -11,5 +11,5 @@
       "description": "Your Facebook app's Secret"
     }
   },
-  "image": "heroku/php",
+  "image": "heroku/php"
 }
