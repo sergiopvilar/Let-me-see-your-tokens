@@ -15,25 +15,20 @@
 
 	$app_id = $_ENV['APP_ID'];
 	$app_secret = $_ENV['APP_SECRET'];
-	$redirect = $_SERVER['HTTP_HOST'];
+	$redirect = 'http://'.$_SERVER['HTTP_HOST'];
 
 	$code = $_REQUEST["code"];
 
-   	if(empty($code)):
+  if(empty($code)):
 
-		$location = 'https://graph.facebook.com/oauth/authorize?
-		    client_id='.$app_id.'&
-		    redirect_uri='.$redirect.'&
-		    scope=manage_pages,email';
+		$location = 'https://graph.facebook.com/oauth/authorize?client_id='.$app_id.'&redirect_uri='.$redirect.'&scope=manage_pages,email';
 
 		header('location:'.$location);
 
 	else:
 
-		 $token_url = "https://graph.facebook.com/oauth/access_token?"
-       . "client_id=" . $app_id . "&redirect_uri=" . urlencode($redirect)
-       . "&client_secret=" . $app_secret . "&code=" . $code;
-
+		 $token_url = "https://graph.facebook.com/oauth/access_token?client_id=" . $app_id . "&redirect_uri=" . $redirect. "/&client_secret=" . $app_secret . "&code=" . $code;
+		
 	    $response = file_get_contents($token_url);
 
 	    $response = str_replace('access_token=', '', $response);
@@ -41,8 +36,7 @@
 
 	    $token = $ar[0];
 
-	    $graph_url = "https://graph.facebook.com/me/accounts?access_token="
-       . $token;
+	    $graph_url = "https://graph.facebook.com/me/accounts?access_token=".$token;
 
      	$accounts = json_decode(file_get_contents($graph_url));
 
