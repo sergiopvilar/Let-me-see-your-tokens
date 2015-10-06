@@ -1,5 +1,5 @@
 <?php
-	
+
 	/**
 	 * Let me see your tokens (https://github.com/sergiovilar/Let-me-see-your-tokens)
 	 * Copyright 2012-2013, Sérgio Vilar (http://sergiovilar.com.br)
@@ -13,9 +13,9 @@
 	 * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
 	 */
 
-	$app_id = '';
-	$app_secret = '';
-	$redirect = '';
+	$app_id = $_ENV['APP_ID'];
+	$app_secret = $_ENV['APP_SECRET'];
+	$redirect = $_SERVER['HTTP_HOST'];
 
 	$code = $_REQUEST["code"];
 
@@ -35,13 +35,13 @@
        . "&client_secret=" . $app_secret . "&code=" . $code;
 
 	    $response = file_get_contents($token_url);
-	    
+
 	    $response = str_replace('access_token=', '', $response);
 	    $ar = explode('&', $response);
 
 	    $token = $ar[0];
 
-	    $graph_url = "https://graph.facebook.com/me/accounts?access_token=" 
+	    $graph_url = "https://graph.facebook.com/me/accounts?access_token="
        . $token;
 
      	$accounts = json_decode(file_get_contents($graph_url));

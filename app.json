@@ -1,0 +1,15 @@
+{
+  "name": "Let me see your tokens",
+  "description": "Php script to retrieve tokens of your user and your pages on Facebook ",
+  "repository": "https://github.com/sergiovilar/Let-me-see-your-tokens",
+  "keywords": ["php", "auth", "facebook"],
+  "env": {
+    "APP_ID": {
+      "description": "Your Facebook app's ID."
+    },
+    "WEB_CONCURRENCY": {
+      "description": "Your Facebook app's Secret"
+    }
+  },
+  "image": "heroku/php",
+}
